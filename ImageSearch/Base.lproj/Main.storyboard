@@ -34,6 +34,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuD-xe-zgc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdh-FH-r4C">
+                                        <rect key="frame" x="187.5" y="333.5" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Pdh-FH-r4C" firstAttribute="centerX" secondItem="fuD-xe-zgc" secondAttribute="centerX" id="2Lq-gz-IPx"/>
+                                    <constraint firstItem="Pdh-FH-r4C" firstAttribute="centerY" secondItem="fuD-xe-zgc" secondAttribute="centerY" id="jrx-Du-QkL"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="X2G-a0-wJm">
                                 <rect key="frame" x="5" y="0.0" width="365" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -110,8 +126,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="X2G-a0-wJm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="GdG-ce-JrL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fuD-xe-zgc" secondAttribute="trailing" id="JOl-S3-B5V"/>
                             <constraint firstItem="X2G-a0-wJm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="Kmo-da-LrL"/>
+                            <constraint firstItem="fuD-xe-zgc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OJa-1v-0j9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fuD-xe-zgc" secondAttribute="bottom" id="XwL-I0-1fl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="X2G-a0-wJm" secondAttribute="bottom" id="hHI-yB-cfl"/>
+                            <constraint firstItem="fuD-xe-zgc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xjv-8G-H9l"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X2G-a0-wJm" secondAttribute="trailing" constant="5" id="zBq-S4-lEb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -134,6 +154,7 @@
                     <connections>
                         <outlet property="imagesCollectionView" destination="X2G-a0-wJm" id="dbS-XX-PLl"/>
                         <outlet property="menuButton" destination="6e6-bD-bLT" id="pEj-1P-YxM"/>
+                        <outlet property="noResultView" destination="fuD-xe-zgc" id="aF1-lT-bWm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

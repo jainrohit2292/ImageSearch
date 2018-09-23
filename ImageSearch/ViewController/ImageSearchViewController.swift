@@ -17,6 +17,7 @@ class ImageSearchViewController: UIViewController {
     var imageListModel:[ImageListDataModel] = []
     var currentSearchText: String?
     
+    @IBOutlet weak var noResultView: UIView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var menuButton: UIButton!
     override func viewDidLoad() {
@@ -25,6 +26,8 @@ class ImageSearchViewController: UIViewController {
         menuButton.setImage(UIImage(named: "three_column_icon"), for: .normal)
         getCellWidth(columnCount: currentMenuItem)
         self.navigationController?.delegate = self
+        noResultView.isHidden = false
+        imagesCollectionView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +100,8 @@ extension ImageSearchViewController : UINavigationControllerDelegate,UISearchRes
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        noResultView.isHidden = true
+        imagesCollectionView.isHidden = false
         if let searchText = searchBar.text{
             self.currentSearchText = searchText
             self.imageListModel = []
