@@ -100,7 +100,13 @@ extension ImageSearchViewController : UINavigationControllerDelegate,UISearchRes
         if let searchText = searchBar.text{
             self.currentSearchText = searchText
             self.imageListModel = []
-            self.searchImageWithLoader(text: searchText, index: 1)
+            let imageList = DatabaseManager.sharedInstance.getDataFromRealm(searchItem: searchText)
+            if (Reachability.isConnectedToNetwork() && imageList.count <= 0){
+                self.searchImageWithLoader(text: searchText, index: 1)
+            }else{
+                self.imageListModel.append(contentsOf: imageList)
+                self.imagesCollectionView.reloadData()
+            }
         }
     }
     
@@ -168,7 +174,9 @@ extension ImageSearchViewController : UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if (indexPath.row + 1 == (imageListModel.count - 3)) {
-            self.searchImageWithOutLoader(text: currentSearchText!, index: (imageListModel.count + 1))
+            if Reachability.isConnectedToNetwork(){
+                self.searchImageWithOutLoader(text: currentSearchText!, index: (imageListModel.count + 1))
+            }
         }
     }
 }
@@ -179,5 +187,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageViewItem: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageViewItem.image = nil
     }
 }

@@ -8,12 +8,15 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class ImageNetworkWrapper: NSObject {
     static let sharedInstance = ImageNetworkWrapper()
+    var realm = try! Realm()
     
     private override init() {
         super.init()
+        realm.autorefresh = true
     }
     
     func getImageList(text:String,startIndex:Int,success:@escaping ([ImageListDataModel]) -> Void, failure:@escaping (ErrorResponse) -> Void){
@@ -27,11 +30,15 @@ class ImageNetworkWrapper: NSObject {
                 if let imgList = obj["items"] as? [Any]{
                     print(imgList)
                     var imageModel:[ImageListDataModel] = []
-
-                    for data in imgList {
-                        if let a = data as? [String:Any]{
-                            let model = ImageListDataModel(With: a["image"] as? [String:Any])
-                            imageModel.append(model)
+                    
+                    let uiRealm = try! Realm()
+                    try! uiRealm.write {
+                        for data in imgList {
+                            if let a = data as? [String:Any]{
+                                let model = ImageListDataModel(With: a["image"] as? [String:Any], searchText: text.lowercased())
+                                imageModel.append(model)
+                                uiRealm.add(model)
+                            }
                         }
                     }
                     success(imageModel)

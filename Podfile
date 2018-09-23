@@ -10,6 +10,7 @@ target 'ImageSearch' do
     pod 'Alamofire', '~> 4.0'
     pod 'AlamofireImage'
     pod 'SDWebImage', '~> 4.0'
+    pod 'RealmSwift'
 
   target 'ImageSearchUITests' do
     inherit! :search_paths
